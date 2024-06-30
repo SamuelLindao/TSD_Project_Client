@@ -4,7 +4,7 @@ import random
 import pandas as pd
 import time
 import mouse
-
+import screen as sr
 
 mouseA = {
     'id': [],
@@ -19,12 +19,11 @@ pressed = {
     'key': []
 }
 
-track_info
-{
-    'id':
-    'hour':
-    'mouse_info':
-    'keyboard_info': pressed
+track_info = {
+    'id': '',
+    'hour': '',
+    'mouseA': mouseA,
+    'pressed': pressed,
 }
 
 
@@ -45,14 +44,21 @@ def input_call(duration):
     begin = time.time()
     keyboard.on_press(key_assign)
     mouse.on_click(mouse_assign, mouse_events)
-    while time.time() - begin < tracktime:
-            pass
-
+    while time.time() - begin < 10:
+        if not sr.WeNeedYou:
+            break
+        pass
     dfM = pd.DataFrame(mouseA)
     dfM.to_csv('mouseidentify.csv')
     print("Mouse Tracker Finished!")
     df = pd.DataFrame(pressed)
     df.to_csv('keyboardIdentify.csv')
     print("Keyboard Track Finished!")
+    track_info['id'] = str(random.randint(1,2141241244))
+    track_info['hour'] = str(datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
+    track_info['mouseA'] = mouseA
+    track_info['pressed'] = pressed
+    print(track_info)
+
 
 

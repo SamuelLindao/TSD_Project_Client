@@ -1,12 +1,17 @@
 import inputIdentify
 import screen as sr
-import random
+import threading
 
-sr.create_screen()
+thread = threading.Thread(target=sr.create_screen)
+thread.start()
 
 try:
     while True:
-        inputIdentify.input_call(10)
-        pass
+        if sr.WeNeedYou:
+            inputIdentify.input_call(10)
+        else:
+            pass
 except KeyboardInterrupt:
     print("Finished")
+
+thread.join()
