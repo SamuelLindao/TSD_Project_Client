@@ -1,9 +1,5 @@
-import keyboard
-import datetime
-import random
+import keyboard, datetime, random, time, mouse
 import pandas as pd
-import time
-import mouse
 import screen as sr
 
 mouseA = {
@@ -27,7 +23,7 @@ track_info = {
 }
 
 
-def input_call(duration):
+def input_call():
 
     def key_assign(event):
         recorded_events.append(event)
@@ -40,11 +36,11 @@ def input_call(duration):
         mouseA['hour'].append(str(datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")))
         mouseA['info'].append(str(mouse.get_position()))
 
-    tracktime = duration * 60
     begin = time.time()
     keyboard.on_press(key_assign)
     mouse.on_click(mouse_assign, mouse_events)
-    while time.time() - begin < 10:
+    while time.time() - begin < 600:
+        print(time.time() - begin)
         if not sr.WeNeedYou:
             break
         pass

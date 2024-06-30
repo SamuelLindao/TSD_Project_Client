@@ -8,7 +8,7 @@ thread.start()
 try:
     while True:
         if sr.WeNeedYou:
-            inputIdentify.input_call(10)
+            inputIdentify.input_call()
         else:
             pass
 except KeyboardInterrupt:
