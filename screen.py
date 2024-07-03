@@ -37,6 +37,8 @@ def create_screen():
 
     time_container = ctk.CTkFrame(app)
     time_container.pack(side="top", fill="both", expand=True)
+    mid_container = ctk.CTkFrame(app)
+    mid_container.pack( fill="both", expand=True)
     bottom_container = ctk.CTkFrame(app)
     bottom_container.pack(side="bottom", fill="both", expand=True)
     name_label = ctk.CTkLabel(time_container, text="Tracker", font=("Manrope", 18, "bold"))
@@ -49,6 +51,9 @@ def create_screen():
 
     config_button = ctk.CTkButton(time_container, text="", width=25, height=25)
     config_button.place( x=width_sc * 0.05, y=height_sc * 0.05)
+
+    last_track = ctk.CTkTabview(mid_container)
+    last_track.pack()
 
     app.resizable(False,False)
     app.mainloop()
