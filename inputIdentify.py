@@ -1,6 +1,7 @@
 import keyboard, datetime, random, time, mouse
 import pandas as pd
 import screen as sr
+import pygetwindow as gw
 
 mouseA = {
     'id': [],
@@ -17,13 +18,16 @@ pressed = {
 
 track_info = {
     'id': '',
+    'computer_name' : '',
     'hour': '',
     'mouseA': mouseA,
     'pressed': pressed,
+    'active_app': ''
 }
 
+active_window = gw.getActiveWindow()
 
-def input_call():
+def input_call(computer_name):
 
     def key_assign(event):
         recorded_events.append(event)
@@ -39,21 +43,28 @@ def input_call():
     begin = time.time()
     keyboard.on_press(key_assign)
     mouse.on_click(mouse_assign, mouse_events)
+    global active_window
     while time.time() - begin < 600:
-        print(time.time() - begin)
+        active_window = gw.getActiveWindow()
         if not sr.WeNeedYou:
             break
         pass
-    dfM = pd.DataFrame(mouseA)
-    dfM.to_csv('mouseidentify.csv')
+    dfm = pd.DataFrame(mouseA)
+    dfm.to_csv('mouse_identify.csv')
     print("Mouse Tracker Finished!")
     df = pd.DataFrame(pressed)
-    df.to_csv('keyboardIdentify.csv')
+    df.to_csv('keyboard_identify.csv')
     print("Keyboard Track Finished!")
+
     track_info['id'] = str(random.randint(1,2141241244))
     track_info['hour'] = str(datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     track_info['mouseA'] = mouseA
+    track_info['computer_name'] = computer_name
     track_info['pressed'] = pressed
+    if active_window is not None:
+        track_info['active_app'] = active_window.title
+    all_info = pd.DataFrame(track_info)
+    all_info.to_csv('all_info')
     print(track_info)
 
 
