@@ -3,6 +3,8 @@ import pandas as pd
 import screen as sr
 import pygetwindow as gw
 
+
+
 mouseA = {
     'id': [],
     'hour': [],
@@ -27,7 +29,9 @@ track_info = {
 
 active_window = gw.getActiveWindow()
 
-def input_call(computer_name):
+
+def input_call(computer_name, app):
+
 
     def key_assign(event):
         recorded_events.append(event)
@@ -44,9 +48,9 @@ def input_call(computer_name):
     keyboard.on_press(key_assign)
     mouse.on_click(mouse_assign, mouse_events)
     global active_window
-    while time.time() - begin < 600:
+    while time.time() - begin < 5:
         active_window = gw.getActiveWindow()
-        if not sr.WeNeedYou:
+        if not app.WeNeedYou:
             break
         pass
     dfm = pd.DataFrame(mouseA)
@@ -65,6 +69,7 @@ def input_call(computer_name):
         track_info['active_app'] = active_window.title
     all_info = pd.DataFrame(track_info)
     all_info.to_csv('all_info')
+    app.track_add(f"{len(pressed['key'])} - {len(mouseA['info'])}")
     print(track_info)
 
 

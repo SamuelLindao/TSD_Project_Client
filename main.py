@@ -2,19 +2,24 @@ import inputIdentify
 import screen as sr
 import threading
 import platform
+import datetime
+import time
+
+app_instance, app_root = sr.create_app()
 
 computer_name = platform.node()
 print(computer_name)
-thread = threading.Thread(target=sr.create_screen)
+
+
+def external_worker():
+    while True:
+        if app_instance.WeNeedYou:
+            inputIdentify.input_call(computer_name, app_instance)
+
+
+thread = threading.Thread(target=external_worker)
 thread.start()
 
-try:
-    while True:
-        if sr.WeNeedYou:
-            inputIdentify.input_call(computer_name)
-        else:
-            pass
-except KeyboardInterrupt:
-    print("Finished")
+app_root.mainloop()
 
 thread.join()
