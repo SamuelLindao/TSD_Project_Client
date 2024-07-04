@@ -5,6 +5,7 @@ track_time = 0
 WeNeedYou = False
 
 
+
 def track_start(button):
     global WeNeedYou
     WeNeedYou = not WeNeedYou
@@ -24,6 +25,10 @@ def update_label(label):
     label.after(1000, update_label, label)
 
 
+def font_size(width, constant):
+    return int(width/constant)
+
+
 def create_screen():
     ctk.set_default_color_theme("dark-blue")
     app = ctk.CTk()
@@ -31,29 +36,26 @@ def create_screen():
     height_sc = int(app.winfo_screenheight() * 0.70)
     app.geometry(f"{width_sc}x{height_sc}")
     app.title("TSD Client")
-    app.configure(bg="#121417")
+    app.configure(fg_color="#121417")
 
     print(f"{width_sc}x{height_sc}")
 
-    time_container = ctk.CTkFrame(app)
+    time_container = ctk.CTkFrame(app, fg_color="#121417")
     time_container.pack(side="top", fill="both", expand=True)
-    mid_container = ctk.CTkFrame(app)
-    mid_container.pack( fill="both", expand=True)
-    bottom_container = ctk.CTkFrame(app)
+    list_box = ctk.CTkScrollableFrame(app, fg_color="#121417", label_text="Last Track", label_font=("Manrope", font_size(width_sc, 20)), label_fg_color="#121417", scrollbar_button_color="#121417", scrollbar_button_hover_color="#121417")
+    list_box.pack(side="top", fill="both", expand=True)
+    bottom_container = ctk.CTkFrame(app, fg_color="#121417")
     bottom_container.pack(side="bottom", fill="both", expand=True)
-    name_label = ctk.CTkLabel(time_container, text="Tracker", font=("Manrope", 18, "bold"))
-    name_label.pack(side="top", pady = 10)
-    label = ctk.CTkLabel(time_container, text="00:00:00", font=("Manrope", 54, "bold"))
+    name_label = ctk.CTkLabel(time_container, text="Tracker", font=("Manrope", font_size(width_sc, 16), "bold"))
+    name_label.pack(side="top", pady = 25)
+    label = ctk.CTkLabel(time_container, text="00:00:00", font=("Manrope", font_size(width_sc, 7), "bold"))
     label.pack(side="top")
     update_label(label)
-    track_button = ctk.CTkButton(bottom_container, text="Track", font=("Manrope", 16), fg_color="#5CE090",width=int(width_sc * 0.55), height=int(height_sc * 0.1),corner_radius=35,  command=lambda: track_start(track_button))
-    track_button.pack( side="bottom", pady=15)
+    track_button = ctk.CTkButton(bottom_container, text="Track", font=("Manrope", font_size(width_sc, 22), "bold"), text_color="#121417", fg_color="#5CE090",width=int(width_sc * 0.55), height=int(height_sc * 0.1),corner_radius=35,  command=lambda: track_start(track_button))
+    track_button.pack( side="bottom", pady=25)
 
     config_button = ctk.CTkButton(time_container, text="", width=25, height=25)
     config_button.place( x=width_sc * 0.05, y=height_sc * 0.05)
-
-    last_track = ctk.CTkTabview(mid_container)
-    last_track.pack()
 
     app.resizable(False,False)
     app.mainloop()
