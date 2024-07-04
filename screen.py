@@ -42,7 +42,7 @@ def create_screen():
 
     time_container = ctk.CTkFrame(app, fg_color="#121417")
     time_container.pack(side="top", fill="both", expand=True)
-    list_box = ctk.CTkScrollableFrame(app, fg_color="#121417", label_text="Last Track", label_font=("Manrope", font_size(width_sc, 20)), label_fg_color="#121417", scrollbar_button_color="#121417", scrollbar_button_hover_color="#121417")
+    list_box = ctk.CTkScrollableFrame(app, fg_color="#121417", label_text="Last Track", label_font=("Manrope", font_size(width_sc, 20)), label_fg_color="#121417")
     list_box.pack(side="top", fill="both", expand=True)
     bottom_container = ctk.CTkFrame(app, fg_color="#121417")
     bottom_container.pack(side="bottom", fill="both", expand=True)
@@ -56,6 +56,9 @@ def create_screen():
 
     config_button = ctk.CTkButton(time_container, text="", width=25, height=25)
     config_button.place( x=width_sc * 0.05, y=height_sc * 0.05)
+
+    history_frame = ctk.CTkFrame(list_box, fg_color="white")
+    history_frame.pack(fill="x", expand=True)
 
     app.resizable(False,False)
     app.mainloop()
