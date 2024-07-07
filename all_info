@@ -1,5 +1,5 @@
 ,id,computer_name,hour,mouseA,pressed,active_app
-id,1469395665,SamuelRx,03/07/2024 07:01:42,['1876550'],['1241327'],TSD_Project – screen.py
-hour,1469395665,SamuelRx,03/07/2024 07:01:42,['03/07/2024 06:51:48'],['03/07/2024 07:01:35'],TSD_Project – screen.py
-info,1469395665,SamuelRx,03/07/2024 07:01:42,"['(444, 118)']",,TSD_Project – screen.py
-key,1469395665,SamuelRx,03/07/2024 07:01:42,,['space'],TSD_Project – screen.py
+id,1159697612,DESKTOP-OMPT6TM,06/07/2024 15:14:35,"['8881700', '3472238', '4018900']",[],TSD Client
+hour,1159697612,DESKTOP-OMPT6TM,06/07/2024 15:14:35,"['06/07/2024 15:14:33', '06/07/2024 15:14:34', '06/07/2024 15:14:34']",[],TSD Client
+info,1159697612,DESKTOP-OMPT6TM,06/07/2024 15:14:35,"['(1096, 211)', '(1054, 526)', '(1053, 526)']",,TSD Client
+key,1159697612,DESKTOP-OMPT6TM,06/07/2024 15:14:35,,[],TSD Client
