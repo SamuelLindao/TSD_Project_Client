@@ -48,7 +48,7 @@ def input_call(computer_name, app):
     keyboard.on_press(key_assign)
     mouse.on_click(mouse_assign, mouse_events)
     global active_window
-    while time.time() - begin < 5:
+    while time.time() - begin < 600:
         active_window = gw.getActiveWindow()
         if not app.WeNeedYou:
             break

@@ -1,5 +1,5 @@
 # screen.py
-
+import tkinter as tk
 import customtkinter as ctk
 import datetime
 
@@ -104,5 +104,8 @@ class TSDClientApp:
 
 def create_app():
     root = ctk.CTk()
+    root.iconbitmap("Icon.ico")
+    icon = tk.PhotoImage(file="WorkClockIcon.png")
+    root.iconphoto(True, icon, icon)
     app = TSDClientApp(root)
     return app, root
