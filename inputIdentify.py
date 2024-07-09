@@ -54,10 +54,10 @@ def input_call(computer_name, app):
             break
         pass
     dfm = pd.DataFrame(mouseA)
-    dfm.to_csv('mouse_identify.csv')
+    dfm.to_csv('files/mouse_identify.csv')
     print("Mouse Tracker Finished!")
     df = pd.DataFrame(pressed)
-    df.to_csv('keyboard_identify.csv')
+    df.to_csv('files/keyboard_identify.csv')
     print("Keyboard Track Finished!")
 
     track_info['id'] = str(random.randint(1,2141241244))
@@ -68,7 +68,7 @@ def input_call(computer_name, app):
     if active_window is not None:
         track_info['active_app'] = active_window.title
     all_info = pd.DataFrame(track_info)
-    all_info.to_csv('all_info')
+    all_info.to_csv('files/all_info')
     app.track_add(f"{len(pressed['key'])} - {len(mouseA['info'])}")
     print(track_info)
 

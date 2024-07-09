@@ -15,6 +15,8 @@ def external_worker():
     while True:
         if app_instance.WeNeedYou:
             inputIdentify.input_call(computer_name, app_instance)
+        else:
+            time.sleep(0.5)
 
 
 thread = threading.Thread(target=external_worker)
